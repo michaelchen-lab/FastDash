@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Google</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md">
+      <a class="navbar-brand text-danger"><h4>Google Advanced Search</h4></a>
+      
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a
+              class="nav-link text-dark"
+              href="index.html"
+              >Google Search</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <br><br>
+
+    <div class="container">
+      <h5>
+        Find pages with...
+      </h5>
+      <form action="https://google.com/search">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">all these words:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="as_q">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">this exact word or phrase:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="as_epq">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">any of these words:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="as_oq">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">none of these words:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="as_eq">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mx-1 float-right">
+          Advanced Search
+        </button>
+      </form>
+    </div>
+
+  </body>
+</html>

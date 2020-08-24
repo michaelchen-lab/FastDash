@@ -1,0 +1,19 @@
+/* CSS files add styling rules to your content */
+
+body {
+  font-family: helvetica, arial, sans-serif;
+  font-size: 26;
+}
+
+.jumbotron {
+   display: table-cell;
+   vertical-align: middle;
+   background-color:transparent !important;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
