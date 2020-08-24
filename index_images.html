@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Google</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+  </head>
+
+  <body>
+    <!-- use nav bar? -->
+
+    <nav class="navbar navbar-expand-md">
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="index.html">Google Search</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="jumbotron d-flex align-items-center min-vh-100">
+      <div class="container col-md-6 col-md-offset-6">
+        <img
+          src="https://cdn.glitch.com/20bffecc-99d6-4ed4-8e9e-90de4a1abc6b%2Fgoogle_images_logo.PNG?v=1598262367501"
+          class="img-fluid center"
+          width="272"
+          height="72"
+        />
+        <br />
+        <form id="form" action="https://google.com/search">
+          <div class="form-group">
+            <input type="text" class="form-control" id="userInput" name="q" />
+          </div>
+
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-light" name="tbm" value="isch">
+              Image Search
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
