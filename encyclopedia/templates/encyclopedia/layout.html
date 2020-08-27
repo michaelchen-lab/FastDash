@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="row col-11">
+            <div class="sidebar col-lg-2 col-md-3">
+                <ul class="nav flex-column">
+                  <h2>Wiki</h2>
+                  <form action="{% url 'search' %}" method="POST">{% csrf_token %}
+                    <div class="form-group row">
+                      <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search" name="userInput">
+                    </div>
+                  </form>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'index' %}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'createPage' %}">Create New Page</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'random' %}">Random Page</a>
+                  </li>
+                </ul>
+                {% block nav %}
+                {% endblock %}
+            </div>
+            <div class="main col-lg-10 col-md-9">
+              <div class="container">
+                {% if danger_alert %}
+                  <div class="alert alert-danger" role="alert">
+                    {{ danger_alert }}
+                  </div>
+                {% endif %}
+
+                {% if success_alert %}
+                  <div class="alert alert-success" role="alert">
+                    {{ success_alert }}
+                  </div>
+                {% endif %}
+
+                {% if primary_alert %}
+                  <div class="alert alert-primary" role="alert">
+                    {{ primary_alert }}
+                  </div>
+                {% endif %}
+              </div>
+              <div class="container">
+                {% block body %}
+                {% endblock %}
+              </div>
+            </div>
+        </div>
+
+    </body>
+</html>
