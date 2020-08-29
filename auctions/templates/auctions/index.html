@@ -1,0 +1,24 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2><br>
+
+      <div class="row">
+        {% for listing in listings %}
+          <div class="col-sm-6">
+            <div class="card border-light">
+              <img class="card-img-top" src={{ listing.imageLink }} alt="image">
+              <div class="card-body">
+                <h5 class="card-title">{{ listing.title }}</h5>
+                <p class="card-text">{{ listing.description }}</p>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Bid Price: ${{ listing.bid.amount }}</h5>
+                <a class="btn btn-primary" href="{% url 'viewListing' listing_pk=listing.pk %}">View More</a>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <p>Oops! No listings found.</p>
+        {% endfor %}
+{% endblock %}

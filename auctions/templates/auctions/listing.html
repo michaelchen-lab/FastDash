@@ -1,0 +1,94 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div class="row">
+        {% if listing.is_closed %}
+          <h2>Listing: {{ listing.title }} <span class="badge badge-secondary">Closed</span></h2> &nbsp;&nbsp;&nbsp;
+        {% else %}
+          <h2>Listing: {{ listing.title }}</h2> &nbsp;&nbsp;&nbsp;
+        {% endif %}
+        {% if user.is_authenticated %}
+          {% if listing in watchedListings %}
+            <form method="POST"> {% csrf_token %}
+              <button type="submit" class="btn btn-outline-primary" name="remove" value="true">Remove from Watchlist</button>
+            </form>
+          {% else %}
+            <form method="POST"> {% csrf_token %}
+              <button type="submit" class="btn btn-outline-primary" name="add" value="true">Add to Watchlist</button>
+            </form>
+          {% endif %}
+        {% endif %}
+    </div>
+
+    <div class="row">
+      <div class="card border-light">
+        <img class="card-img-top" src={{ listing.imageLink }} alt="image">
+        <div class="card-body">
+          {% if listing.bid.user == request.user %}
+            <h5 class="card-title">Your Bid: ${{ listing.bid.amount }}</h5>
+          {% else %}
+            <h5 class="card-title">Bid Price: ${{ listing.bid.amount }}</h5>
+          {% endif %}
+          <p class="card-text">{{ listing.description }}</p>
+        </div>
+        <div class="card-body">
+          {% if listing.user == request.user %}
+            {# When user who is viewing also created the post #}
+            {% if not listing.is_closed %}
+              <form method="POST"> {% csrf_token %}
+                <button type="submit" class="btn btn-danger" name="close" value="true">Close Listing</button>
+              </form>
+            {% else %}
+              <form method="POST"> {% csrf_token %}
+                <button type="submit" class="btn btn-danger" name="reopen" value="true">Reopen Listing</button>
+              </form>
+            {% endif %}
+          {% elif listing.bid.user == request.user %}
+            {# When user who is viewing also bid on the project #}
+            {% if listing.is_closed %}
+              <div class="card">
+                <div class="card-body">
+                  Congrats! You've won this auction!
+                </div>
+              </div>
+            {% endif %}
+          {% elif user.is_authenticated and not listing.is_closed %}
+            <form method="POST"> {% csrf_token %}
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Bid on this</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" name="bidPrice" aria-describedby="bidHelp" min={{ listing.bid.amount }} required>
+                  <small id="bidHelp" class="form-text text-muted">Your bid must be larger than the current bid.</small>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Place Bid</button>
+            </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        Comments
+      </div>
+      <div class="card-body">
+        {% for comment in comments %}
+          <h5 class="card-title">{{ comment.user.username }}</h5>
+          <p class="card-text">{{ comment.comment }}</p>
+        {% empty %}
+          <p class="card-text">No comments found.</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <br>
+    {% if user.is_authenticated %}
+      <form method="POST"> {% csrf_token %}
+        <div class="form-group row">
+          <textarea class="form-control" rows="3" name="comment" placeholder="Post a comment..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Post</button>
+      </form>
+    {% endif %}
+{% endblock %}
