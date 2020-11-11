@@ -2,7 +2,7 @@
   <img src="https://i.ibb.co/Yy97q6w/951cd16b-258f-4143-a4e6-e52fda3fb3da-200x200.png" alt="FastDashLogo-200x200">
 </p>
 
-FastDash is an end-to-end dashboard builder designed for rapid visualization and easy shareability. FastDash is designed with busy teams and individuals in mind.
+FastDash is an end-to-end dashboard builder designed for rapid visualization and easy sharing. FastDash is designed with busy teams and individuals in mind.
 
 * **Never share Excel files again.** Users can easily share their dashboards with colleagues and clients. Instead of sending a bulky Excel spreadsheet, just send a FastDash URL!
 * **Better than Excel PivotCharts** FastDash delivers the power of Excel PivotCharts, but with cleaner, more intuitive UI. Never experience the clunky, decade-old Excel interface again!
