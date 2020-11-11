@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -146,7 +147,7 @@ DATABASES = {
 
         'USER': 'qciybtrycohsgw',
 
-        'PASSWORD': '3cd3fececa7b780826673b7ba5d2039bd0c3faedbc9104452b34511d6f213ce7',
+        'PASSWORD': os.environ['DB_PASSWORD'],
 
         'HOST': 'ec2-3-214-4-151.compute-1.amazonaws.com',
 
@@ -175,7 +176,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AWS_ACCESS_KEY_ID = 'AKIAJBS3GBZMSKJIQK3A'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_SECRET_ACCESS_KEY = os.environ['S3_SECRET_KEY']
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
