@@ -8,21 +8,29 @@ FastDash is an end-to-end dashboard builder designed for rapid visualization and
 * **Better than Excel PivotCharts** FastDash delivers the power of Excel PivotCharts, but with cleaner, more intuitive UI. Never experience the clunky, decade-old Excel interface again!
 * **Simple but beautiful styling** Thanks to FastDash's grid layout and built-in design, uneven margins and incoherent design are never a problem. Focus on truly matters: your dashboard's content.
 
-## Tech Stack
-### Backend
-* Django with Django Rest Framework
-* PostgreSQL is used as RDBMS
-* File storage is powered by Amazon S3
-* JWT Authentication is supported by `djangorestframework-simplejwt`
-* Data analytics is handled with `pandas==1.1.2`
-### Frontend
-* React and `create-react-app`
-* State management is handled by Redux with `redux-thunk`
-* FastDash's UI is powered by Bootstrap 4
-* Draggable and resizable grid layout system is implemented with `react-grid-layout`
-* Dashboard charts are created using ChartistJS with `react-chartist`
+## How It Works
+1. **Authentication**: When users attempt to login, a request is sent to the Django backend, and is authenticated with `djangorestframework-simplejwt`. Once the user is verified, the JSON Web Token (JWT) access token (which expires in 24 hours) is sent back to the client. The token will be included in all future requests to authorize access to backend data.
+2. **Upload Dataset**: Users can upload a CSV file from their local machine, along with a title. After submitting, the dataset will be sent to the Django backend, which would then be uploaded to `AWS S3`. The dataset title along an `S3` link to the file will be pushed to PostgreSQL.
+3. **Create Dashboard**: After creating a new dashboard instance, users can start building their own custom dashboard, using the datasets uploaded. A dashboard can utilize multiple datasets at once.
+4. **Build Dashboard**: Users can create cards of any size within the 12-column grid, which creates the skeleton of the dashboard. The drag-and-drop functionality is implemented with `react-grid-layout`. There are 3 visualization options: text, bar chart and line graph. The latter two are powered by `react-chartist`. Similar to Excel PivotCharts, users will perform simple data analytics (e.g. mean, sum, max, min, count) to generate the visualization data. This is powered by `pandas` in the backend.
+5. **Share Dashboard**: After completing the dashboard, get your dashboard's URL by clicking the `Copy URL` button. Anyone with the URL can view, but cannot edit. And that's it!
 
-## TODO List
+## Overview of Tech Stak
+
+### Backend
+* Backend Framework: Django with Django Rest Framework (DRF)
+* Database: PostgreSQL
+* File Storage: AWS S3
+* JSON Web Tokens (JWT) Authentication: `djangorestframework-simplejwt`
+* Data Analytics: `pandas==1.1.2`
+### Frontend
+* Frontend Framework: `create-react-app`
+* State Management: Redux with `redux-thunk`
+* UI Framework: Bootstrap 4
+* Interactive Grid: `react-grid-layout`
+* Visualization: ChartistJS with `react-chartist`
+
+## Future Plans
 1. Support more chart types (e.g. histogram, pie chart)
 2. Dashboard styling themes for users to choose from
 3. Authentication feature for dashboard share URLs
